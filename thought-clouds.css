@@ -16,7 +16,10 @@ body.page-thought-clouds {
   animation: floatUp 30s ease infinite;
   margin: 0;
   overflow: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
   height: 100vh;
+  height: 100dvh;
   transition:
     background 3s ease,
     filter 3s ease;
@@ -56,15 +59,22 @@ body.page-thought-clouds.weather-rain {
   z-index: 1;
 }
 
+.thought-clouds-bar__mic-label {
+  font-size: clamp(9px, 2.8vw, 11px);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
 /* Toggle Switch Styles — dark text on solid-enough pill (white-on-frost was illegible) */
 .memory-toggle {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: clamp(4px, 1.5vw, 8px);
   background: rgba(255, 255, 255, 0.88);
-  padding: 6px 14px;
+  padding: clamp(5px, 1.5vw, 6px) clamp(8px, 2.5vw, 14px);
   border-radius: 20px;
-  font-size: 11px;
+  font-size: clamp(9px, 2.6vw, 11px);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   backdrop-filter: blur(10px);
@@ -212,4 +222,36 @@ body.page-thought-clouds.weather-rain {
 
 .thought-clouds-permission__btn:active {
   transform: scale(0.98);
+}
+
+@media (max-width: 480px) {
+  .thought-clouds-permission {
+    padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+      max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  }
+
+  .thought-clouds-permission__panel {
+    max-width: 100%;
+    padding: 1.25rem 1rem 1rem;
+  }
+
+  .thought-clouds-permission__panel h2 {
+    font-size: 1.05rem;
+  }
+
+  .thought-clouds-permission__lead {
+    font-size: 13px;
+  }
+
+  .thought-clouds-permission__btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .thought-clouds-permission__panel {
+    max-width: 28rem;
+  }
 }

@@ -1,8 +1,12 @@
 body.page-signal-scouter {
   margin: 0;
   padding: 0;
-  width: 100vw;
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  min-height: 100dvh;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   background-color: #fdfdfd;
   font-family: "Inter", system-ui, sans-serif;
@@ -214,4 +218,56 @@ body.page-signal-scouter {
 .status-dot.active {
   background: #4ade80;
   box-shadow: 0 0 8px rgba(74, 222, 128, 0.5);
+}
+
+@media (max-width: 640px) {
+  .sst-intro-center {
+    padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+      max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  }
+
+  .sst-start-primary {
+    max-width: min(320px, calc(100vw - 24px));
+    padding: 14px;
+  }
+
+  .sst-status {
+    font-size: 11px;
+  }
+
+  .sst-start-btn {
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  .sst-bottom-bar {
+    left: max(12px, env(safe-area-inset-left));
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .interaction-hint {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  .interaction-hint p {
+    font-size: 11px;
+    line-height: 1.35;
+  }
+}
+
+@media (min-width: 1200px) {
+  .sst-start-primary {
+    max-width: min(380px, 90vw);
+    padding: 16px 20px;
+  }
+
+  .sst-bottom-bar {
+    left: max(32px, env(safe-area-inset-left));
+    right: max(32px, env(safe-area-inset-right));
+    bottom: max(28px, env(safe-area-inset-bottom));
+  }
 }

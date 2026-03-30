@@ -39,8 +39,10 @@ body,
 html {
   margin: 0;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
   background-color: var(--bg-color);
   color: var(--ink-color);
@@ -574,6 +576,45 @@ a.translucent-btn {
     width: min(calc(100vw - 24px), var(--panel-width));
     max-height: min(40vh, 340px);
     overflow: auto;
+  }
+}
+
+/* Narrow phones: keep hint + title readable */
+@media (max-width: 480px) {
+  .radar-mode-hint {
+    bottom: max(12px, env(safe-area-inset-bottom, 12px));
+    width: min(520px, calc(100vw - 20px));
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .title-container {
+    width: min(100%, calc(100vw - 24px));
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+}
+
+/* Very small: orbit labels tighter */
+@media (max-width: 380px) {
+  .page-home .radar-orbit__btn {
+    padding: 7px 8px;
+    font-size: clamp(10px, 3.2vw, 12px);
+  }
+}
+
+/* Large / ultrawide: cap radar so UI does not dominate */
+@media (min-width: 1400px) {
+  #radar-container {
+    max-width: min(120vh, min(100vw - 420px, 95vmin));
+    max-height: min(120vh, min(100vw - 420px, 95vmin));
+  }
+}
+
+@media (min-width: 1800px) {
+  #radar-container {
+    max-width: min(120vh, 88vmin);
+    max-height: min(120vh, 88vmin);
   }
 }
 
