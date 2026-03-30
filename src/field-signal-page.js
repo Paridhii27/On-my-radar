@@ -49,19 +49,31 @@ async function toggleSystem() {
   isStarted = true;
   startBtn.textContent = "Pause Tracking";
 
-  // Init Audio Synth
   if (!synth) {
     synth = new NatureSynth();
   }
-  await synth.start();
-  modeReadout.textContent = synth.currentMode.toUpperCase();
 
-  // Init Hands
-  handSensorController = await initHandsSensor({
-    videoElement: videoEl,
-    onReady: () => camStatusDot?.classList.add("active"),
-    onHandsDetect: processDetection
-  });
+  /* Camera + MediaPipe and Web Audio must both start in the same user-gesture turn.
+     Awaiting synth.start() before initHandsSensor() can drop activation and break getUserMedia. */
+  try {
+    const [, handsCtl] = await Promise.all([
+      synth.start(),
+      initHandsSensor({
+        videoElement: videoEl,
+        onReady: () => camStatusDot?.classList.add("active"),
+        onHandsDetect: processDetection,
+      }),
+    ]);
+    handSensorController = handsCtl;
+  } catch (err) {
+    console.error(err);
+    if (synth) synth.stop();
+    isStarted = false;
+    startBtn.textContent = "Begin Tracking";
+    return;
+  }
+
+  modeReadout.textContent = synth.currentMode.toUpperCase();
 
   // Start Render Loop
   if (renderRaf) cancelAnimationFrame(renderRaf);
