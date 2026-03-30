@@ -7,7 +7,7 @@ const root = fileURLToPath(new URL(".", import.meta.url));
 export default defineConfig({
   // GitHub Pages serves under /<repo>/, so use relative asset paths.
   // If you later move to a custom domain at the root, you can switch back to "/".
-  base: "./",
+  base: "/On-my-radar/",
   build: {
     rollupOptions: {
       input: {
