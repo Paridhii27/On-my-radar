@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Field Signal — On my radar</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./pages-common.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="page-field-signal">
+    <a class="page-back" href="./index.html">← Back to radar</a>
+
+    <canvas id="antenna-canvas"></canvas>
+
+    <video
+      id="webcam"
+      autoplay
+      playsinline
+      muted
+      style="
+        position: absolute;
+        width: 640px;
+        height: 480px;
+        opacity: 0;
+        pointer-events: none;
+        z-index: -1;
+      "
+    ></video>
+
+    <!-- UI Overlay -->
+    <div class="field-hud">
+      <div class="field-signal-sr-only" aria-hidden="true">
+        <span class="dot" id="cam-status-dot"></span>
+      </div>
+      <div class="hud-top">
+        <div class="hud-item" id="mode-readout">
+          Signal: <strong>WIND</strong>
+        </div>
+      </div>
+      <div class="hud-bottom">
+        <div
+          class="hud-item"
+          style="font-family: &quot;Roboto Mono&quot;, monospace"
+        >
+          DEPTH: <span id="depth-readout">0.00</span>
+        </div>
+
+        <button
+          id="start-btn"
+          class="translucent-btn"
+          style="
+            pointer-events: auto;
+            transition: opacity 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          "
+        >
+          Begin Tracking
+        </button>
+
+        <div class="hud-instruction">
+          Trace a circle with your finger to tune frequencies.
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/field-signal-page.js"></script>
+  </body>
+</html>

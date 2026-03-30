@@ -1,0 +1,215 @@
+@keyframes floatUp {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body.page-thought-clouds {
+  background: linear-gradient(-45deg, #184c8c, #2b6db2, #418dd9, #1a5ca6);
+  background-size: 400% 400%;
+  animation: floatUp 30s ease infinite;
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+  transition:
+    background 3s ease,
+    filter 3s ease;
+}
+
+body.page-thought-clouds.time-dawn {
+  background: linear-gradient(-45deg, #d77e60, #b55050, #5c85c2, #3963a8);
+  background-size: 400% 400%;
+}
+
+body.page-thought-clouds.time-day {
+  background: linear-gradient(-45deg, #184c8c, #2b6db2, #418dd9, #1a5ca6);
+  background-size: 400% 400%;
+}
+
+body.page-thought-clouds.time-dusk {
+  background: linear-gradient(-45deg, #3d3b5c, #6e4e55, #9c5c45, #5a5a75);
+  background-size: 400% 400%;
+}
+
+body.page-thought-clouds.time-night {
+  background: linear-gradient(-45deg, #0d121a, #151d29, #0c1017, #0a0d14);
+  background-size: 400% 400%;
+}
+
+body.page-thought-clouds.weather-rain {
+  filter: brightness(0.85) saturate(0.9);
+}
+
+#main-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Toggle Switch Styles — dark text on solid-enough pill (white-on-frost was illegible) */
+.memory-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+  z-index: 10;
+}
+
+.memory-toggle:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.memory-toggle .label-fleeting,
+.memory-toggle .label-permanent {
+  transition:
+    color 0.3s,
+    font-weight 0.3s;
+  color: rgba(15, 23, 42, 0.42);
+}
+
+.memory-toggle:not(.permanent) .label-fleeting {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.memory-toggle:not(.permanent) .label-permanent {
+  color: rgba(15, 23, 42, 0.38);
+}
+
+.memory-toggle.permanent .label-permanent {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.memory-toggle.permanent .label-fleeting {
+  color: rgba(15, 23, 42, 0.38);
+}
+
+.memory-toggle .switch {
+  position: relative;
+  width: 32px;
+  height: 18px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 9px;
+  transition: background 0.3s;
+}
+
+.memory-toggle .switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.memory-toggle.permanent .switch {
+  background: #5199e1;
+}
+
+.memory-toggle.permanent .switch::after {
+  transform: translateX(14px);
+}
+
+/* Mic + location: requested after explicit Continue (browser user-gesture rules) */
+.thought-clouds-permission {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  background: rgba(13, 18, 26, 0.45);
+  backdrop-filter: blur(10px);
+}
+
+.thought-clouds-permission.hidden {
+  display: none;
+}
+
+.thought-clouds-permission__panel {
+  max-width: 26rem;
+  padding: 1.5rem 1.5rem 1.25rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+.thought-clouds-permission__panel h2 {
+  margin: 0 0 0.65rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.thought-clouds-permission__lead {
+  margin: 0 0 1rem;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+.thought-clouds-permission__warn {
+  margin: 0 0 1rem;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #b45309;
+}
+
+.thought-clouds-permission__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  color: #fff;
+  background: #1e3a5f;
+  transition:
+    background 0.2s,
+    transform 0.15s;
+}
+
+.thought-clouds-permission__btn:hover {
+  background: #2a4d7a;
+}
+
+.thought-clouds-permission__btn:active {
+  transform: scale(0.98);
+}

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What's on my radar</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="page-home">
+    <div class="radar-backdrop" aria-hidden="true"></div>
+
+    <!-- Radar Overlay UI -->
+    <div id="radar-container">
+      <div class="radar-grid" aria-hidden="true"></div>
+      <!-- <div class="radar-crosshair" aria-hidden="true"></div> -->
+      <div class="radar-circle radar-outer"></div>
+      <div class="radar-circle radar-middle"></div>
+      <div class="radar-circle radar-inner"></div>
+      <div class="radar-scanner"></div>
+      <div class="radar-blip" id="radar-blip" aria-hidden="true"></div>
+
+      <nav class="radar-orbit" aria-label="Radar modes">
+        <div
+          class="radar-orbit__slot"
+          style="--orbit-angle: -32deg; --orbit-f: 0.34"
+        >
+          <a
+            class="translucent-btn radar-orbit__btn"
+            href="./thought-clouds.html"
+            data-hint="Type a thought and watch it drift into a living sky of words and clouds."
+            >Thought Clouds</a
+          >
+        </div>
+        <div
+          class="radar-orbit__slot"
+          style="--orbit-angle: 71deg; --orbit-f: 0.41"
+        >
+          <a
+            class="translucent-btn radar-orbit__btn"
+            href="./signal-scouter.html"
+            data-hint="Use your open palm to sweep the page and slowly reveal hidden images and memory fragments."
+            >The Signal Scouter</a
+          >
+        </div>
+        <div
+          class="radar-orbit__slot"
+          style="--orbit-angle: 166deg; --orbit-f: 0.28"
+        >
+          <a
+            class="translucent-btn radar-orbit__btn"
+            href="./field-signal.html"
+            data-hint="Trace your finger in space to tune layered nature sounds—wind, birds, water—and draw to explore."
+            >The Field Signal</a
+          >
+        </div>
+      </nav>
+    </div>
+
+    <div class="title-container">
+      <h1>What's on my</h1>
+      <h1 class="special-font">Radar</h1>
+    </div>
+
+    <p
+      id="radar-mode-hint"
+      class="radar-mode-hint"
+      role="status"
+      aria-live="polite"
+    >
+      Hover on a mode to see what it does. Click to explore.
+    </p>
+
+    <!-- Info: icon only; panel on hover / focus-within -->
+    <div class="info-popover">
+      <button
+        type="button"
+        class="info-popover__trigger"
+        aria-label="Navigation help"
+        aria-expanded="false"
+        aria-controls="info-panel"
+        id="info-popover-trigger"
+      >
+        <svg
+          class="info-popover__icon"
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M12 16v-4h-.5M12 8h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+      <aside
+        id="info-panel"
+        class="info-popover__panel"
+        role="region"
+        aria-labelledby="info-panel-title"
+      >
+        <div class="info-panel__header">
+          <div class="info-panel__kicker">Navigate</div>
+          <div class="info-panel__title" id="info-panel-title">
+            Choose a mode
+          </div>
+        </div>
+        <div class="info-panel__body" id="info-panel-body">
+          Each button opens a dedicated page. Microphone and camera only
+          activate on the pages that need them.
+        </div>
+        <div class="info-panel__modes" aria-hidden="true">
+          Thought Clouds · Signal Scouter · Field Signal
+        </div>
+      </aside>
+    </div>
+
+    <script type="module" src="./src/home-info.js"></script>
+    <script type="module" src="./src/radar-blip.js"></script>
+    <script type="module" src="./src/home-radar-nav.js"></script>
+  </body>
+</html>

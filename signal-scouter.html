@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Signal Scouter — On my radar</title>
+    <link href="./style.css" rel="stylesheet" />
+    <link href="./pages-common.css" rel="stylesheet" />
+    <link href="./signal-scouter.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="page-signal-scouter">
+    <a class="page-back absolute-nav" href="./index.html">← Back to radar</a>
+
+    <!-- Reserves space so #scouter-canvas sits below the fixed back link (same as other pages) -->
+    <div class="sst-top-spacer" aria-hidden="true"></div>
+
+    <div class="sst-canvas-wrap">
+      <canvas id="scouter-canvas"></canvas>
+    </div>
+
+    <video
+      id="webcam-video"
+      autoplay
+      muted
+      playsinline
+      style="
+        position: absolute;
+        width: 640px;
+        height: 480px;
+        opacity: 0;
+        pointer-events: none;
+        z-index: -1;
+      "
+    ></video>
+
+    <div class="sst-intro-center">
+      <div id="sst-start-primary" class="sst-start-primary">
+        <h2 class="sst-page-intro__title">Explore hidden memories</h2>
+        <p id="load-status" class="sst-status">Loading hidden signals…</p>
+        <button
+          type="button"
+          id="start-scouter-btn"
+          class="sst-start-btn hidden"
+          disabled
+        >
+          Start scanning
+        </button>
+      </div>
+    </div>
+
+    <div class="sst-bottom-bar">
+      <div id="sst-hint-layer" class="interaction-hint hidden">
+        <span class="status-dot" id="hands-status"></span>
+        <p>
+          Raise your open hand and move slowly. Center your palm on a glimmer to
+          bring it into focus.
+        </p>
+      </div>
+    </div>
+
+    <script type="module" src="./src/signal-scouter-page.js"></script>
+  </body>
+</html>
