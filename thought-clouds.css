@@ -48,8 +48,8 @@ body.page-thought-clouds {
     -45deg,
     #0f3a72,
     #1a5ca6,
-    #3a8fd4,
-    #2563a8,
+    #5ca4df,
+    #5d92ce,
     #1e6099
   );
   background-size: 400% 400%;
@@ -77,7 +77,7 @@ body.page-thought-clouds.time-dawn {
     #e8946b,
     #c44d52,
     #4a6eb8,
-    #2d4a8c,
+    #4967ad,
     #f0a080
   );
   background-size: 400% 400%;
@@ -88,8 +88,8 @@ body.page-thought-clouds.time-day {
     -45deg,
     #0f3a72,
     #1a5ca6,
-    #3a8fd4,
-    #2563a8,
+    #6ea8d6,
+    #4476af,
     #1e6099
   );
   background-size: 400% 400%;
@@ -99,7 +99,7 @@ body.page-thought-clouds.time-dusk {
   /* Plum / mauve vs ember vs deep violet — sunset bands read when gradient shifts */
   background: linear-gradient(
     -45deg,
-    #1e1428,
+    #52396b,
     #5c3d52,
     #c86b48,
     #3d2e55,
@@ -112,11 +112,11 @@ body.page-thought-clouds.time-night {
   /* Near-black vs navy vs indigo — moonlit pockets so float animation is visible */
   background: linear-gradient(
     -45deg,
-    #030408,
+    #5a5d95,
     #0c1528,
-    #1a1430,
-    #070a12,
-    #152238
+    #131637,
+    #1e2c50,
+    #374a6b
   );
   background-size: 400% 400%;
 }
