@@ -1,6 +1,6 @@
 import { playRadarStartSound } from "./radar-start-sound.js";
 
-const DEFAULT_HINT = "Hover a mode to see what it does.";
+const DEFAULT_HINT = "Hover on a mode to see what it does. Click to explore.";
 
 const nav = document.querySelector("nav.radar-orbit");
 const hintEl = document.getElementById("radar-mode-hint");
@@ -28,7 +28,11 @@ if (nav) {
     anchor.addEventListener("mouseenter", () => setHint(hint));
     anchor.addEventListener("mouseleave", (e) => {
       const to = e.relatedTarget;
-      if (to && nav.contains(to) && to.closest?.("a.radar-orbit__btn[data-hint]")) {
+      if (
+        to &&
+        nav.contains(to) &&
+        to.closest?.("a.radar-orbit__btn[data-hint]")
+      ) {
         return;
       }
       setHint(DEFAULT_HINT);
@@ -37,7 +41,11 @@ if (nav) {
     anchor.addEventListener("focusin", () => setHint(hint));
     anchor.addEventListener("focusout", (e) => {
       const to = e.relatedTarget;
-      if (to && nav.contains(to) && to.closest?.("a.radar-orbit__btn[data-hint]")) {
+      if (
+        to &&
+        nav.contains(to) &&
+        to.closest?.("a.radar-orbit__btn[data-hint]")
+      ) {
         return;
       }
       setHint(DEFAULT_HINT);

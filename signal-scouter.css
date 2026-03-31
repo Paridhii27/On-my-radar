@@ -1,3 +1,30 @@
+:root {
+  /* Signal Scouter tokens */
+  --scouter-bg: #fdfdfd;
+
+  --scouter-intro-title: rgba(0, 0, 0, 0.82);
+  --scouter-intro-copy: rgba(0, 0, 0, 0.52);
+
+  --scouter-card-bg: rgba(255, 255, 255, 0.88);
+  --scouter-card-border: rgba(0, 0, 0, 0.06);
+  --scouter-card-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+
+  --scouter-status-text: rgba(0, 0, 0, 0.5);
+
+  --scouter-btn-bg: #282c34;
+  --scouter-btn-bg-hover: #282c34;
+  --scouter-btn-text: #ffffff;
+
+  --scouter-hint-bg: #ffffffb3;
+  --scouter-hint-border: rgba(0, 0, 0, 0.05);
+  --scouter-hint-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --scouter-hint-text: #333333;
+
+  --scouter-status-dot-idle: rgba(0, 0, 0, 0.1);
+  --scouter-status-dot-active: #4ade80;
+  --scouter-status-dot-shadow: 0 0 8px rgba(74, 222, 128, 0.5);
+}
+
 body.page-signal-scouter {
   margin: 0;
   padding: 0;
@@ -8,16 +35,12 @@ body.page-signal-scouter {
   height: 100vh;
   height: 100dvh;
   overflow: hidden;
-  background-color: #fdfdfd;
-  font-family: "Inter", system-ui, sans-serif;
+  background-color: var(--scouter-bg);
+  font-family: var(--font-body, "Synonym-Regular", sans-serif);
   display: flex;
   flex-direction: column;
 }
 
-/*
- * Vertical band matching shared .page-back placement (pages-common: top 20px, padding 8px, font 14px)
- * so the canvas does not sit under the link.
- */
 .sst-top-spacer {
   flex-shrink: 0;
   height: calc(20px + 8px + 1.25em + 8px);
@@ -39,10 +62,8 @@ body.page-signal-scouter {
   width: 100%;
   height: 100%;
   z-index: 10;
-  cursor: none;
 }
 
-/* Intro copy on the page (replaces overlay card) */
 .sst-page-intro {
   position: absolute;
   top: clamp(72px, 12vmin, 120px);
@@ -57,21 +78,20 @@ body.page-signal-scouter {
 }
 
 .sst-page-intro__title {
+  font-family: var(--font-subheading, "Synonym-Medium", sans-serif);
   margin: 0 0 0.5rem;
   font-weight: 500;
   font-size: clamp(1.1rem, 2.8vw, 1.35rem);
   letter-spacing: -0.02em;
-  color: rgba(0, 0, 0, 0.82);
+  color: var(--scouter-intro-title);
 }
 
 .sst-page-intro__copy {
   margin: 0;
   font-size: 14px;
   line-height: 1.55;
-  color: rgba(0, 0, 0, 0.52);
+  color: var(--scouter-intro-copy);
 }
-
-/* Back link: uses shared .page-back from pages-common.css (same as Field Signal / Thought Clouds) */
 
 .absolute-nav.hidden-nav {
   opacity: 0.2;
@@ -125,9 +145,9 @@ body.page-signal-scouter {
   max-width: min(320px, 100%);
   padding: 12px 16px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+  background: var(--scouter-card-bg);
+  border: 1px solid var(--scouter-card-border);
+  box-shadow: var(--scouter-card-shadow);
 }
 
 .sst-start-primary.hidden {
@@ -137,14 +157,14 @@ body.page-signal-scouter {
 .sst-status {
   margin: 0;
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.5);
-  font-family: "Roboto Mono", monospace;
+  color: var(--scouter-status-text);
+  font-family: var(--font-body, "Synonym-Regular", sans-serif);
   line-height: 1.4;
 }
 
 .sst-start-btn {
-  background: #282c34;
-  color: white;
+  background: var(--scouter-btn-bg);
+  color: var(--scouter-btn-text);
   border: none;
   padding: 12px 22px;
   border-radius: 999px;
@@ -184,12 +204,12 @@ body.page-signal-scouter {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--scouter-hint-bg);
   padding: 8px 16px;
   border-radius: 8px;
   backdrop-filter: blur(8px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: var(--scouter-hint-shadow);
+  border: 1px solid var(--scouter-hint-border);
   transition: opacity 0.5s;
 }
 
@@ -199,10 +219,9 @@ body.page-signal-scouter {
 
 .interaction-hint p {
   margin: 0;
-  color: #333;
+  color: var(--scouter-hint-text);
   font-size: 13px;
   font-weight: 500;
-  text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
@@ -210,14 +229,14 @@ body.page-signal-scouter {
   width: 8px;
   height: 8px;
   flex-shrink: 0;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--scouter-status-dot-idle);
   border-radius: 50%;
   transition: background 0.3s;
 }
 
 .status-dot.active {
-  background: #4ade80;
-  box-shadow: 0 0 8px rgba(74, 222, 128, 0.5);
+  background: var(--scouter-status-dot-active);
+  box-shadow: var(--scouter-status-dot-shadow);
 }
 
 @media (max-width: 640px) {

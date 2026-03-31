@@ -144,32 +144,8 @@ async function init() {
   });
 
   requestAnimationFrame(loop);
-
-  const permEl = document.getElementById("thought-clouds-permission");
-  const permBtn = document.getElementById("thought-clouds-permission-btn");
-  const secureHint = document.getElementById("tc-perm-secure-hint");
-
-  if (!window.isSecureContext && secureHint) {
-    secureHint.textContent =
-      "Microphone and location need a secure context. Use http://localhost or https (opening via a LAN IP over plain HTTP may block these APIs).";
-    secureHint.classList.remove("hidden");
-  }
-
-  if (permBtn && permEl) {
-    permBtn.addEventListener("click", async () => {
-      permBtn.disabled = true;
-      try {
-        await startAudioSensor();
-        requestLocationAndWeather();
-      } finally {
-        permBtn.disabled = false;
-        permEl.classList.add("hidden");
-      }
-    });
-  } else {
-    await startAudioSensor();
-    requestLocationAndWeather();
-  }
+  await startAudioSensor();
+  requestLocationAndWeather();
 }
 
 window.addEventListener("beforeunload", () => {

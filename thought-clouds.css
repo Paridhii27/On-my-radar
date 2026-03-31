@@ -1,3 +1,33 @@
+:root {
+  /* Thought Clouds: shared tokens */
+  --tc-text-muted: rgba(0, 0, 0, 0.45);
+  --tc-hint-text: #ffffff;
+
+  --tc-toggle-bg: rgba(255, 255, 255, 0.88);
+  --tc-toggle-bg-hover: rgba(255, 255, 255, 0.95);
+  --tc-toggle-border: rgba(0, 0, 0, 0.08);
+  --tc-toggle-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --tc-toggle-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --tc-toggle-label: rgba(15, 23, 42, 0.42);
+  --tc-toggle-label-muted: rgba(15, 23, 42, 0.38);
+  --tc-toggle-label-strong: #0f172a;
+  --tc-toggle-track: rgba(0, 0, 0, 0.15);
+  --tc-toggle-thumb: #ffffff;
+  --tc-toggle-track-active: #5199e1;
+  --tc-toggle-thumb-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+  --tc-permission-overlay: rgba(13, 18, 26, 0.45);
+  --tc-permission-panel-bg: rgba(255, 255, 255, 0.94);
+  --tc-permission-panel-border: rgba(0, 0, 0, 0.08);
+  --tc-permission-panel-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+  --tc-permission-heading: rgba(0, 0, 0, 0.88);
+  --tc-permission-body: rgba(0, 0, 0, 0.62);
+  --tc-permission-warn: #b45309;
+  --tc-permission-btn-bg: #1e3a5f;
+  --tc-permission-btn-bg-hover: #2a4d7a;
+  --tc-permission-btn-text: #ffffff;
+}
+
 @keyframes floatUp {
   0% {
     background-position: 0% 50%;
@@ -12,7 +42,7 @@
 
 body.page-thought-clouds {
   font-family: var(--font-body, "Synonym-Regular", sans-serif);
-  --text-color: rgba(0, 0, 0, 0.45);
+  --text-color: var(--tc-text-muted);
   /* Deeper cobalt → brighter sky → teal edge for readable motion */
   background: linear-gradient(
     -45deg,
@@ -95,7 +125,7 @@ body.page-thought-clouds.weather-rain {
   filter: brightness(0.85) saturate(0.9);
 }
 
-#main-canvas {
+.page-thought-clouds #main-canvas {
   position: absolute;
   top: 0;
   left: 0;
@@ -106,7 +136,7 @@ body.page-thought-clouds.weather-rain {
 }
 
 .thought-clouds-hint {
-  color: white;
+  color: var(--tc-hint-text);
 }
 
 .thought-clouds-bar__mic-label {
@@ -121,15 +151,15 @@ body.page-thought-clouds.weather-rain {
   display: flex;
   align-items: center;
   gap: clamp(4px, 1.5vw, 8px);
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--tc-toggle-bg);
   padding: clamp(5px, 1.5vw, 6px) clamp(8px, 2.5vw, 14px);
   border-radius: 20px;
   font-size: clamp(9px, 2.6vw, 11px);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--tc-toggle-border);
+  box-shadow: var(--tc-toggle-shadow);
   cursor: pointer;
   user-select: none;
   transition:
@@ -139,8 +169,8 @@ body.page-thought-clouds.weather-rain {
 }
 
 .memory-toggle:hover {
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  background: var(--tc-toggle-bg-hover);
+  box-shadow: var(--tc-toggle-shadow-hover);
 }
 
 .memory-toggle .label-fleeting,
@@ -148,32 +178,32 @@ body.page-thought-clouds.weather-rain {
   transition:
     color 0.3s,
     font-weight 0.3s;
-  color: rgba(15, 23, 42, 0.42);
+  color: var(--tc-toggle-label);
 }
 
 .memory-toggle:not(.permanent) .label-fleeting {
   font-weight: 700;
-  color: #0f172a;
+  color: var(--tc-toggle-label-strong);
 }
 
 .memory-toggle:not(.permanent) .label-permanent {
-  color: rgba(15, 23, 42, 0.38);
+  color: var(--tc-toggle-label-muted);
 }
 
 .memory-toggle.permanent .label-permanent {
   font-weight: 700;
-  color: #0f172a;
+  color: var(--tc-toggle-label-strong);
 }
 
 .memory-toggle.permanent .label-fleeting {
-  color: rgba(15, 23, 42, 0.38);
+  color: var(--tc-toggle-label-muted);
 }
 
 .memory-toggle .switch {
   position: relative;
   width: 32px;
   height: 18px;
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--tc-toggle-track);
   border-radius: 9px;
   transition: background 0.3s;
 }
@@ -185,14 +215,14 @@ body.page-thought-clouds.weather-rain {
   left: 2px;
   width: 14px;
   height: 14px;
-  background: white;
+  background: var(--tc-toggle-thumb);
   border-radius: 50%;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--tc-toggle-thumb-shadow);
 }
 
 .memory-toggle.permanent .switch {
-  background: #5199e1;
+  background: var(--tc-toggle-track-active);
 }
 
 .memory-toggle.permanent .switch::after {
@@ -209,7 +239,7 @@ body.page-thought-clouds.weather-rain {
   justify-content: center;
   padding: 24px;
   box-sizing: border-box;
-  background: rgba(13, 18, 26, 0.45);
+  background: var(--tc-permission-overlay);
   backdrop-filter: blur(10px);
 }
 
@@ -221,9 +251,9 @@ body.page-thought-clouds.weather-rain {
   max-width: 26rem;
   padding: 1.5rem 1.5rem 1.25rem;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+  background: var(--tc-permission-panel-bg);
+  border: 1px solid var(--tc-permission-panel-border);
+  box-shadow: var(--tc-permission-panel-shadow);
 }
 
 .thought-clouds-permission__panel h2 {
@@ -232,21 +262,21 @@ body.page-thought-clouds.weather-rain {
   font-size: 1.15rem;
   font-weight: 400;
   letter-spacing: -0.02em;
-  color: rgba(0, 0, 0, 0.88);
+  color: var(--tc-permission-heading);
 }
 
 .thought-clouds-permission__lead {
   margin: 0 0 1rem;
   font-size: 14px;
   line-height: 1.55;
-  color: rgba(0, 0, 0, 0.62);
+  color: var(--tc-permission-body);
 }
 
 .thought-clouds-permission__warn {
   margin: 0 0 1rem;
   font-size: 13px;
   line-height: 1.45;
-  color: #b45309;
+  color: var(--tc-permission-warn);
 }
 
 .thought-clouds-permission__btn {
@@ -258,17 +288,17 @@ body.page-thought-clouds.weather-rain {
   border-radius: 999px;
   font-size: 14px;
   font-weight: 600;
-  font-family: inherit;
+  font-family: var(--font-body, "Synonym-Regular", sans-serif);
   cursor: pointer;
-  color: #fff;
-  background: #1e3a5f;
+  color: var(--tc-permission-btn-text);
+  background: var(--tc-permission-btn-bg);
   transition:
     background 0.2s,
     transform 0.15s;
 }
 
 .thought-clouds-permission__btn:hover {
-  background: #2a4d7a;
+  background: var(--tc-permission-btn-bg-hover);
 }
 
 .thought-clouds-permission__btn:active {

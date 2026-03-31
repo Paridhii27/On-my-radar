@@ -5,6 +5,11 @@
 }
 
 @font-face {
+  font-family: "Synonym-Medium";
+  src: url("./assets/fonts/Synonym-Medium.woff") format("woff");
+}
+
+@font-face {
   font-family: "Synonym-Regular";
   src: url("./assets/fonts/Synonym-Regular.woff") format("woff");
 }
@@ -201,7 +206,7 @@ html {
   margin: 0;
   padding: 12px 18px;
   border-radius: 14px;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body, "Synonym-Regular", sans-serif);
   font-size: clamp(12px, 2.4vw, 14px);
   line-height: 1.45;
   text-align: center;
@@ -372,7 +377,7 @@ h1 {
   border: 1px solid var(--ui-border);
   border-radius: 20px;
   padding: 10px 24px;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body, "Synonym-Regular", sans-serif);
   font-weight: 400;
   font-size: 14px;
   color: var(--ink-color);

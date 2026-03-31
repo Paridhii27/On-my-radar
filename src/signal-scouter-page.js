@@ -310,7 +310,7 @@ function renderLoop() {
     if (snippet.length > 0) {
       const textStrength = Math.pow(Math.max(0.12, focus), 0.95);
       ctx.globalAlpha = imageAlpha * textStrength;
-      ctx.font = "13px 'Roboto Mono', monospace";
+      ctx.font = "13px 'Synonym-Regular', sans-serif";
       ctx.fillStyle = `rgba(28, 32, 38, ${0.78 + 0.2 * focus})`;
       ctx.textAlign = "center";
 

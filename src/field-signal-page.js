@@ -13,6 +13,8 @@ const ctx = canvas.getContext("2d");
 const depthReadout = document.getElementById("depth-readout");
 const modeReadout = document.querySelector("#mode-readout strong");
 const startBtn = document.getElementById("start-btn");
+const fsStartPrimary = document.getElementById("fs-start-primary");
+const fsBody = document.querySelector(".page-field-signal");
 
 // Interaction State
 const pathHistory = [];
@@ -48,6 +50,8 @@ async function toggleSystem() {
   // Start
   isStarted = true;
   startBtn.textContent = "Pause Tracking";
+  fsStartPrimary?.classList.add("hidden");
+  fsBody?.classList.remove("fs-intro-active");
 
   if (!synth) {
     synth = new NatureSynth();
@@ -202,11 +206,11 @@ function render() {
       fillCol = "rgba(163, 177, 198, 0.9)";
       ringCol = "rgba(163, 177, 198, 0.15)";
     } else if (currentMode === "birds") {
-      strokeCol = "rgba(255, 176, 200, 0.5)"; // Soft pink (like New Delhi banner)
+      strokeCol = "rgba(255, 176, 200, 0.5)"; // Soft pink 
       fillCol = "rgba(255, 176, 200, 0.9)";
       ringCol = "rgba(255, 176, 200, 0.15)";
     } else if (currentMode === "water") {
-      strokeCol = "rgba(168, 216, 255, 0.5)"; // Soft blue (like New York banner)
+      strokeCol = "rgba(168, 216, 255, 0.5)"; // Soft blue
       fillCol = "rgba(168, 216, 255, 0.9)";
       ringCol = "rgba(168, 216, 255, 0.15)";
     }
@@ -286,7 +290,7 @@ function render() {
         readVol = (0.2 + currentZ * 0.8) * 100;
       }
 
-      ctx.font = "bold 11px 'Roboto Mono', monospace";
+      ctx.font = "bold 11px 'Synonym-Medium', 'Synonym-Regular', sans-serif";
       ctx.fillStyle = "rgba(40, 44, 52, 0.75)";
       ctx.letterSpacing = "1px";
       ctx.padding = "4px";

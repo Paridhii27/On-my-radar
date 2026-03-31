@@ -41,10 +41,34 @@
       </div>
       <div class="hud-top">
         <div class="hud-item" id="mode-readout">
-          Signal: <strong>WIND</strong>
+          <span class="field-signal-parameter">Signal:</span></span> <strong>WIND</strong>
         </div>
       </div>
       <div class="hud-bottom">
+        <div class="hud-instruction field-signal-guide">
+          <span class="status-dot" id="hands-status"></span>
+          <ul class="field-signal-guide__list">
+            <ul>
+              <strong>Move closer or farther</strong>
+              from the camera to changes the volume and frequency.
+              <strong>Trace a full circle</strong>
+              to switch the signal (wind → birds → water)
+            </ul>
+          </ul>
+        </div>
+
+        <button
+          id="start-btn"
+          class="translucent-btn"
+          style="
+            pointer-events: auto;
+            transition: opacity 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          "
+        >
+          Start Tracking
+        </button>
+
         <div
           class="hud-item hud-item--depth"
           style="font-family: &quot;Roboto Mono&quot;, monospace"
@@ -60,34 +84,6 @@
               ></span
             >
           </div>
-        </div>
-
-        <button
-          id="start-btn"
-          class="translucent-btn"
-          style="
-            pointer-events: auto;
-            transition: opacity 0.3s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-          "
-        >
-          Begin Tracking
-        </button>
-
-        <div class="hud-instruction field-signal-guide">
-          <ul class="field-signal-guide__list">
-            <li>
-              <strong>Move closer or farther</strong> from the camera — that
-              changes volume and frequency (watch the live
-              <span class="field-signal-guide__mono">FREQ</span> /
-              <span class="field-signal-guide__mono">VOL</span> readout by your
-              fingertip).
-            </li>
-            <li>
-              <strong>Trace a full circle</strong> to switch the signal (wind →
-              birds → water), not to tune tone.
-            </li>
-          </ul>
         </div>
       </div>
     </div>
