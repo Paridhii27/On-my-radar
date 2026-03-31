@@ -350,12 +350,26 @@
 }
 
 .field-signal-guide__title {
+  font-family: var(--font-subheading, "Synonym-Medium", sans-serif);
   margin: 0 0 0.4rem;
   font-size: clamp(11px, 2.6vw, 13px);
   font-weight: 600;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
   color: rgba(0, 0, 0, 0.72);
+}
+
+.field-signal-intro__button {
+  background: #282c34;
+  color: #ffffff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background 0.2s;
 }
 
 .field-signal-guide__list {
@@ -370,7 +384,7 @@
   margin-top: 0.45rem;
 }
 
-.field-signal-guide__mono {
+.instruction-bold {
   font-family: "Synonym-Medium", "Synonym-Regular", sans-serif;
   font-size: 0.92em;
   font-weight: 500;

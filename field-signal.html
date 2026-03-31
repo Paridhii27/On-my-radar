@@ -9,12 +9,9 @@
     <title>The Field Signal — On my radar</title>
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./pages-common.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="./signal-scouter.css" />
   </head>
-  <body class="page-field-signal">
+  <body class="page-field-signal fs-intro-active">
     <a class="page-back" href="./index.html">← Back to radar</a>
 
     <canvas id="antenna-canvas"></canvas>
@@ -34,10 +31,26 @@
       "
     ></video>
 
+    <div class="sst-intro-center">
+      <div id="fs-start-primary" class="sst-start-primary">
+        <h2 class="sst-page-intro__title">Tune into the field signal</h2>
+        <p class="sst-status">
+          Move your hand in front of your camera to draw paths and tune the field signals.
+        </p>
+        <button
+          type="button"
+          id="start-btn"
+          class="sst-start-btn"
+        >
+          Start Tracking
+        </button>
+      </div>
+    </div>
+
     <!-- UI Overlay -->
     <div class="field-hud">
       <div class="field-signal-sr-only" aria-hidden="true">
-        <span class="dot" id="cam-status-dot"></span>
+        <span class="dot"></span>
       </div>
       <div class="hud-top">
         <div class="hud-item" id="mode-readout">
@@ -46,32 +59,17 @@
       </div>
       <div class="hud-bottom">
         <div class="hud-instruction field-signal-guide">
-          <span class="status-dot" id="hands-status"></span>
+          <span class="status-dot" id="cam-status-dot"></span>
           <ul class="field-signal-guide__list">
-            <ul>
-              <strong>Move closer or farther</strong>
-              from the camera to changes the volume and frequency.
-              <strong>Trace a full circle</strong>
-              to switch the signal (wind → birds → water)
-            </ul>
+              <span class="instruction-bold">Move closer or farther</span>
+              from the camera to change the volume and frequency of the signal.
+              <span class="instruction-bold">Trace a full circle</span>
+              to switch the signal (wind → birds → water).
           </ul>
         </div>
 
-        <button
-          id="start-btn"
-          class="translucent-btn"
-          style="
-            pointer-events: auto;
-            transition: opacity 0.3s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-          "
-        >
-          Start Tracking
-        </button>
-
         <div
           class="hud-item hud-item--depth"
-          style="font-family: &quot;Roboto Mono&quot;, monospace"
           aria-live="polite"
           aria-label="Hand depth for volume and tone"
         >
