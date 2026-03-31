@@ -11,7 +11,17 @@
 }
 
 body.page-thought-clouds {
-  background: linear-gradient(-45deg, #184c8c, #2b6db2, #418dd9, #1a5ca6);
+  font-family: var(--font-body, "Synonym-Regular", sans-serif);
+  --text-color: rgba(0, 0, 0, 0.45);
+  /* Deeper cobalt → brighter sky → teal edge for readable motion */
+  background: linear-gradient(
+    -45deg,
+    #0f3a72,
+    #1a5ca6,
+    #3a8fd4,
+    #2563a8,
+    #1e6099
+  );
   background-size: 400% 400%;
   animation: floatUp 30s ease infinite;
   margin: 0;
@@ -25,23 +35,59 @@ body.page-thought-clouds {
     filter 3s ease;
 }
 
+.page-thought-clouds #thought-input {
+  font-family: var(--font-body, "Synonym-Regular", sans-serif);
+  font-weight: 400;
+}
+
 body.page-thought-clouds.time-dawn {
-  background: linear-gradient(-45deg, #d77e60, #b55050, #5c85c2, #3963a8);
+  /* Warm coral / rose vs cool blue — stronger split than flat peach */
+  background: linear-gradient(
+    -45deg,
+    #e8946b,
+    #c44d52,
+    #4a6eb8,
+    #2d4a8c,
+    #f0a080
+  );
   background-size: 400% 400%;
 }
 
 body.page-thought-clouds.time-day {
-  background: linear-gradient(-45deg, #184c8c, #2b6db2, #418dd9, #1a5ca6);
+  background: linear-gradient(
+    -45deg,
+    #0f3a72,
+    #1a5ca6,
+    #3a8fd4,
+    #2563a8,
+    #1e6099
+  );
   background-size: 400% 400%;
 }
 
 body.page-thought-clouds.time-dusk {
-  background: linear-gradient(-45deg, #3d3b5c, #6e4e55, #9c5c45, #5a5a75);
+  /* Plum / mauve vs ember vs deep violet — sunset bands read when gradient shifts */
+  background: linear-gradient(
+    -45deg,
+    #1e1428,
+    #5c3d52,
+    #c86b48,
+    #3d2e55,
+    #7a4a5a
+  );
   background-size: 400% 400%;
 }
 
 body.page-thought-clouds.time-night {
-  background: linear-gradient(-45deg, #0d121a, #151d29, #0c1017, #0a0d14);
+  /* Near-black vs navy vs indigo — moonlit pockets so float animation is visible */
+  background: linear-gradient(
+    -45deg,
+    #030408,
+    #0c1528,
+    #1a1430,
+    #070a12,
+    #152238
+  );
   background-size: 400% 400%;
 }
 
@@ -57,6 +103,10 @@ body.page-thought-clouds.weather-rain {
   height: 100%;
   pointer-events: none;
   z-index: 1;
+}
+
+.thought-clouds-hint {
+  color: white;
 }
 
 .thought-clouds-bar__mic-label {
@@ -178,8 +228,9 @@ body.page-thought-clouds.weather-rain {
 
 .thought-clouds-permission__panel h2 {
   margin: 0 0 0.65rem;
+  font-family: var(--font-heading, "Synonym-Bold", sans-serif);
   font-size: 1.15rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: -0.02em;
   color: rgba(0, 0, 0, 0.88);
 }
@@ -226,8 +277,10 @@ body.page-thought-clouds.weather-rain {
 
 @media (max-width: 480px) {
   .thought-clouds-permission {
-    padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
-      max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    padding: max(12px, env(safe-area-inset-top))
+      max(12px, env(safe-area-inset-right))
+      max(12px, env(safe-area-inset-bottom))
+      max(12px, env(safe-area-inset-left));
   }
 
   .thought-clouds-permission__panel {

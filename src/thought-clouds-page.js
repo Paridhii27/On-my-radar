@@ -60,7 +60,12 @@ function applyTimeOfDayTheme() {
   else if (hour >= 17 && hour < 19) timeClass = "time-dusk";
   else timeClass = "time-night";
 
-  document.body.classList.remove("time-dawn", "time-day", "time-dusk", "time-night");
+  document.body.classList.remove(
+    "time-dawn",
+    "time-day",
+    "time-dusk",
+    "time-night",
+  );
   document.body.classList.add(timeClass);
 }
 
@@ -123,7 +128,7 @@ async function init() {
       isPermanent = !isPermanent;
       if (isPermanent) {
         toggleBtn.classList.add("permanent");
-        input.placeholder = "Type a permanent thought...";
+        input.placeholder = "Type a lingering thought...";
       } else {
         toggleBtn.classList.remove("permanent");
         input.placeholder = "Type a fleeting thought...";

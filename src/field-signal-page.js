@@ -32,7 +32,7 @@ async function toggleSystem() {
     // Pause
     isStarted = false;
     startBtn.textContent = "Begin Tracking";
-    
+
     if (synth) synth.stop();
     if (handSensorController) {
       await handSensorController.stop();
@@ -88,9 +88,9 @@ function processDetection(results) {
   }
 
   const hand = results.landmarks[0];
-  const indexTip = hand[8];    // INDEX_FINGER_TIP
-  const wrist = hand[0];      // WRIST
-  const midMcp = hand[9];     // MIDDLE_FINGER_MCP
+  const indexTip = hand[8]; // INDEX_FINGER_TIP
+  const wrist = hand[0]; // WRIST
+  const midMcp = hand[9]; // MIDDLE_FINGER_MCP
 
   // Map to screen
   // Mirrored X because webcam is mirrored natively
@@ -104,13 +104,15 @@ function processDetection(results) {
 
   // Calculate Z-Depth pseudo-metric via hand scale
   // Distance between wrist and middle MCP in normalized screen space
-  const span = Math.sqrt(Math.pow(wrist.x - midMcp.x, 2) + Math.pow(wrist.y - midMcp.y, 2));
-  
+  const span = Math.sqrt(
+    Math.pow(wrist.x - midMcp.x, 2) + Math.pow(wrist.y - midMcp.y, 2),
+  );
+
   // Span is usually ~0.05 (far) to ~0.3 (very close)
   // We want zDepth: 0 (Close/Sharp), 1 (Far/Ambient)
-  let zDepth = 1.0 - ((span - 0.05) / 0.25);
+  let zDepth = 1.0 - (span - 0.05) / 0.25;
   zDepth = Math.max(0, Math.min(1, zDepth));
-  
+
   depthReadout.textContent = zDepth.toFixed(2);
   synth.updateDepth(zDepth);
 
@@ -124,7 +126,10 @@ function detectCircleGesture() {
   if (pathHistory.length < 40) return; // need enough data
 
   // Calculate Bounding Box and Trajectory Length
-  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  let minX = Infinity,
+    maxX = -Infinity,
+    minY = Infinity,
+    maxY = -Infinity;
   let pathLength = 0;
 
   for (let i = 0; i < pathHistory.length; i++) {
@@ -135,14 +140,16 @@ function detectCircleGesture() {
     maxY = Math.max(maxY, pt.y);
 
     if (i > 0) {
-      const prev = pathHistory[i-1];
-      pathLength += Math.sqrt(Math.pow(pt.x - prev.x, 2) + Math.pow(pt.y - prev.y, 2));
+      const prev = pathHistory[i - 1];
+      pathLength += Math.sqrt(
+        Math.pow(pt.x - prev.x, 2) + Math.pow(pt.y - prev.y, 2),
+      );
     }
   }
 
   const width = maxX - minX;
   const height = maxY - minY;
-  
+
   // Check sufficient size
   if (width < 100 || height < 100) return;
 
@@ -153,26 +160,28 @@ function detectCircleGesture() {
   // Check open/close gap (start and end points should be somewhat near)
   const startPt = pathHistory[0];
   const endPt = pathHistory[pathHistory.length - 1];
-  const gap = Math.sqrt(Math.pow(startPt.x - endPt.x, 2) + Math.pow(startPt.y - endPt.y, 2));
-  
+  const gap = Math.sqrt(
+    Math.pow(startPt.x - endPt.x, 2) + Math.pow(startPt.y - endPt.y, 2),
+  );
+
   // Gap should be relatively small compared to the radius
   const maxGap = Math.max(width, height) * 0.4;
-  
+
   if (gap < maxGap) {
     // Check theoretical circumference matching actual drawn length
     const diameter = (width + height) / 2;
     const circumference = Math.PI * diameter;
-    
+
     // If drawing length is near ideal circumference (allow margin of error for squiggles)
     if (pathLength > circumference * 0.7 && pathLength < circumference * 1.5) {
       // Circle detected!
       lastGestureTime = now;
       const newMode = synth.cycleMode();
       modeReadout.textContent = newMode.toUpperCase();
-      
+
       // Visual feedback blink
       canvas.style.opacity = 0;
-      setTimeout(() => canvas.style.opacity = 1, 100);
+      setTimeout(() => (canvas.style.opacity = 1), 100);
       pathHistory.length = 0; // clear path
     }
   }
@@ -182,21 +191,21 @@ function render() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   if (pathHistory.length > 1) {
-    const currentMode = synth ? synth.currentMode : 'wind';
+    const currentMode = synth ? synth.currentMode : "wind";
     let strokeCol = "rgba(40, 44, 52, 0.4)";
     let fillCol = "rgba(40, 44, 52, 0.8)";
     let ringCol = "rgba(40, 44, 52, 0.15)";
-    
+
     // Website matching palette mappings
-    if (currentMode === 'wind') {
+    if (currentMode === "wind") {
       strokeCol = "rgba(163, 177, 198, 0.5)"; // Slate-blue
       fillCol = "rgba(163, 177, 198, 0.9)";
       ringCol = "rgba(163, 177, 198, 0.15)";
-    } else if (currentMode === 'birds') {
+    } else if (currentMode === "birds") {
       strokeCol = "rgba(255, 176, 200, 0.5)"; // Soft pink (like New Delhi banner)
       fillCol = "rgba(255, 176, 200, 0.9)";
       ringCol = "rgba(255, 176, 200, 0.15)";
-    } else if (currentMode === 'water') {
+    } else if (currentMode === "water") {
       strokeCol = "rgba(168, 216, 255, 0.5)"; // Soft blue (like New York banner)
       fillCol = "rgba(168, 216, 255, 0.9)";
       ringCol = "rgba(168, 216, 255, 0.15)";
@@ -209,18 +218,23 @@ function render() {
     ctx.lineJoin = "round";
 
     ctx.moveTo(pathHistory[0].x, pathHistory[0].y);
-    
+
     // Draw smooth bezier curve through points
     for (let i = 1; i < pathHistory.length - 2; i++) {
-        const xc = (pathHistory[i].x + pathHistory[i + 1].x) / 2;
-        const yc = (pathHistory[i].y + pathHistory[i + 1].y) / 2;
-        ctx.quadraticCurveTo(pathHistory[i].x, pathHistory[i].y, xc, yc);
+      const xc = (pathHistory[i].x + pathHistory[i + 1].x) / 2;
+      const yc = (pathHistory[i].y + pathHistory[i + 1].y) / 2;
+      ctx.quadraticCurveTo(pathHistory[i].x, pathHistory[i].y, xc, yc);
     }
-    
+
     // Draw the last two points
     const last = pathHistory.length - 1;
-    ctx.quadraticCurveTo(pathHistory[last-1].x, pathHistory[last-1].y, pathHistory[last].x, pathHistory[last].y);
-    
+    ctx.quadraticCurveTo(
+      pathHistory[last - 1].x,
+      pathHistory[last - 1].y,
+      pathHistory[last].x,
+      pathHistory[last].y,
+    );
+
     ctx.stroke();
 
     // Draw glowing "node" at the tip
@@ -232,15 +246,20 @@ function render() {
 
     // Draw visual tuning ring helper around the gesture
     if (pathHistory.length > 30) {
-      let mX = Infinity, mXX = -Infinity, mY = Infinity, mYY = -Infinity;
+      let mX = Infinity,
+        mXX = -Infinity,
+        mY = Infinity,
+        mYY = -Infinity;
       for (const pt of pathHistory) {
-        if (pt.x < mX) mX = pt.x; if (pt.x > mXX) mXX = pt.x;
-        if (pt.y < mY) mY = pt.y; if (pt.y > mYY) mYY = pt.y;
+        if (pt.x < mX) mX = pt.x;
+        if (pt.x > mXX) mXX = pt.x;
+        if (pt.y < mY) mY = pt.y;
+        if (pt.y > mYY) mYY = pt.y;
       }
       const cx = (mX + mXX) / 2;
       const cy = (mY + mYY) / 2;
       const r = Math.max(mXX - mX, mYY - mY) / 2;
-      
+
       ctx.beginPath();
       ctx.arc(cx, cy, r, 0, Math.PI * 2);
       ctx.strokeStyle = ringCol;
@@ -256,10 +275,10 @@ function render() {
       let readVol = 0;
 
       // Fake readouts loosely based on engine logic for visual indication
-      if (synth.currentMode === 'wind') {
+      if (synth.currentMode === "wind") {
         readFreq = 200 + (1 - currentZ) * 1200;
         readVol = (0.5 + currentZ * 0.5) * 100;
-      } else if (synth.currentMode === 'birds') {
+      } else if (synth.currentMode === "birds") {
         readFreq = 1000 + (1 - currentZ) * 3000;
         readVol = currentZ * 100;
       } else {

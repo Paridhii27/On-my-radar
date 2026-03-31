@@ -222,8 +222,10 @@ body.page-signal-scouter {
 
 @media (max-width: 640px) {
   .sst-intro-center {
-    padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
-      max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    padding: max(16px, env(safe-area-inset-top))
+      max(16px, env(safe-area-inset-right))
+      max(16px, env(safe-area-inset-bottom))
+      max(16px, env(safe-area-inset-left));
   }
 
   .sst-start-primary {

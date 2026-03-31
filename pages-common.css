@@ -14,21 +14,26 @@
   z-index: 50;
   font-family: var(--font-body, "Synonym-Regular", sans-serif);
   font-size: clamp(12px, 3.2vw, 14px);
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.9);
   text-decoration: none;
   padding: 8px clamp(10px, 2.5vw, 14px);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(10px);
+  /* Solid fill — no backdrop-filter (avoids soft text on WebKit). Default matches prior hover clarity. */
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   transition:
     color 0.2s,
-    background 0.2s;
+    background 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s;
 }
 
 .page-back:hover {
-  color: rgba(0, 0, 0, 0.85);
-  background: rgba(255, 255, 255, 0.65);
+  color: rgba(0, 0, 0, 0.95);
+  background: #ffffff;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.14);
 }
 
 /* Thought Clouds page */
@@ -180,6 +185,77 @@
   max-width: min(36rem, 100%);
 }
 
+/* Field Signal: tuning vs mode-switch */
+.field-signal-guide {
+  text-align: left;
+  color: rgba(0, 0, 0, 0.58);
+}
+
+.field-signal-guide__title {
+  margin: 0 0 0.4rem;
+  font-size: clamp(11px, 2.6vw, 13px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.field-signal-guide__list {
+  margin: 0;
+  padding: 0 0 0 1.1rem;
+  list-style: disc;
+  font-size: clamp(10px, 2.5vw, 13px);
+  line-height: 1.45;
+}
+
+.field-signal-guide__list li + li {
+  margin-top: 0.45rem;
+}
+
+.field-signal-guide__mono {
+  font-family: "Roboto Mono", ui-monospace, monospace;
+  font-size: 0.92em;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.hud-item--depth {
+  align-items: flex-start;
+}
+
+.hud-item--depth__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.hud-item--depth__label {
+  font-size: clamp(9px, 2.2vw, 11px);
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.hud-item--depth__value {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: clamp(11px, 2.8vw, 14px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.hud-item--depth__hint {
+  display: block;
+  font-weight: 400;
+  font-size: clamp(8px, 2vw, 10px);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: rgba(0, 0, 0, 0.42);
+  line-height: 1.3;
+  max-width: 14rem;
+}
+
 .page-field-signal .hud-item {
   font-size: clamp(10px, 2.6vw, 13px);
   padding: clamp(6px, 1.8vw, 8px) clamp(10px, 2.5vw, 16px);
@@ -295,15 +371,36 @@
 
   .page-field-signal .hud-instruction {
     order: -1;
-    text-align: center;
+    text-align: left;
     font-size: clamp(10px, 3.4vw, 13px);
     line-height: 1.38;
     padding: 0 4px;
   }
 
+  .page-field-signal .field-signal-guide__title {
+    text-align: center;
+  }
+
+  .page-field-signal .field-signal-guide__list {
+    padding-left: 1.15rem;
+  }
+
   .page-field-signal .hud-item {
     font-size: clamp(9px, 3vw, 11px);
     justify-content: center;
+  }
+
+  .page-field-signal .hud-item--depth {
+    align-items: center;
+    text-align: center;
+  }
+
+  .page-field-signal .hud-item--depth__inner {
+    align-items: center;
+  }
+
+  .page-field-signal .hud-item--depth__hint {
+    max-width: none;
   }
 }
 
@@ -325,7 +422,8 @@
     padding: 0 10px;
   }
 
-  .page-field-signal .hud-instruction {
+  .page-field-signal .hud-instruction,
+  .page-field-signal .field-signal-guide__list {
     font-size: clamp(9px, 3.6vw, 12px);
     line-height: 1.42;
   }

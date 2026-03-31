@@ -46,10 +46,20 @@
       </div>
       <div class="hud-bottom">
         <div
-          class="hud-item"
+          class="hud-item hud-item--depth"
           style="font-family: &quot;Roboto Mono&quot;, monospace"
+          aria-live="polite"
+          aria-label="Hand depth for volume and tone"
         >
-          DEPTH: <span id="depth-readout">0.00</span>
+          <div class="hud-item--depth__inner">
+            <span class="hud-item--depth__label">Depth</span>
+            <span class="hud-item--depth__value"
+              ><span id="depth-readout">0.00</span>
+              <span class="hud-item--depth__hint" aria-hidden="true"
+                >closer → sharper · farther → ambient</span
+              ></span
+            >
+          </div>
         </div>
 
         <button
@@ -64,8 +74,20 @@
           Begin Tracking
         </button>
 
-        <div class="hud-instruction">
-          Trace a circle with your finger to tune frequencies.
+        <div class="hud-instruction field-signal-guide">
+          <ul class="field-signal-guide__list">
+            <li>
+              <strong>Move closer or farther</strong> from the camera — that
+              changes volume and frequency (watch the live
+              <span class="field-signal-guide__mono">FREQ</span> /
+              <span class="field-signal-guide__mono">VOL</span> readout by your
+              fingertip).
+            </li>
+            <li>
+              <strong>Trace a full circle</strong> to switch the signal (wind →
+              birds → water), not to tune tone.
+            </li>
+          </ul>
         </div>
       </div>
     </div>

@@ -25,46 +25,43 @@ const ATTENTION_POOL_RADIUS = 300;
 /** Bundled memories — filenames must match `public/scouter-memories/` exactly (case-sensitive). */
 const MEMORY_SIGNALS = [
   {
-    src: scouterPublicUrl("scouter-memories/signal-1.svg"),
+    src: scouterPublicUrl("scouter-memories/signal-1.png"),
     nx: 0.14,
     ny: 0.22,
     memory:
-      "The porch after summer rain — metal cool under your hands, streetlights just coming on.",
+      "A day spent walking, feeling the wind in my hair and the sun on my skin.",
   },
   {
     src: scouterPublicUrl("scouter-memories/signal-2.JPG"),
     nx: 0.82,
     ny: 0.28,
     memory:
-      "A trail you walked alone once. You thought you’d remember every turn; you remembered the quiet instead.",
+      "A memory I keep returning to — the shape of it still clear when the rest fades.",
   },
   {
     src: scouterPublicUrl("scouter-memories/signal-3.jpeg"),
     nx: 0.38,
     ny: 0.58,
-    memory:
-      "Someone’s kitchen at 2 a.m. — toast, a half-finished problem set, laughter you weren’t expecting.",
+    memory: "The sky held its breath while the light slipped through the seam.",
   },
   {
     src: scouterPublicUrl("scouter-memories/signal-4.jpeg"),
     nx: 0.76,
     ny: 0.74,
-    memory:
-      "A borrowed room that fit wrong until it didn’t. You still think of the light switch on the left.",
+    memory: "The buildings a silhouette against the changing sky",
   },
   {
     src: scouterPublicUrl("scouter-memories/signal-5.jpeg"),
     nx: 0.22,
     ny: 0.86,
-    memory:
-      "The platform where goodbyes stopped feeling like endings — just doors sliding shut and the city humming.",
+    memory: "The city strung its lights like a whisper against the dark.",
   },
   {
     src: scouterPublicUrl("scouter-memories/signal-6.svg"),
     nx: 0.52,
     ny: 0.38,
     memory:
-      "A detail you keep returning to — the shape of it still clear when the rest fades.",
+      "A summer afternoon when the forest was alive with the whispers of the trees.",
   },
 ];
 

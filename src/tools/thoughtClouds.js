@@ -36,10 +36,10 @@ export class ThoughtCloudSystem {
 
     // Set text style matches matte aesthetic
     if (isPermanent) {
-      this.offscreenCtx.font = "500 50px Inter"; // subtle emphasis
+      this.offscreenCtx.font = '500 50px "Synonym-Bold", sans-serif';
       this.offscreenCtx.fillStyle = "rgba(255,255,255,0.95)"; // white
     } else {
-      this.offscreenCtx.font = "300 48px Inter";
+      this.offscreenCtx.font = '400 48px "Synonym-Regular", sans-serif';
       this.offscreenCtx.fillStyle = "rgba(255,255,255,0.85)";
     }
     this.offscreenCtx.textAlign = "center";
