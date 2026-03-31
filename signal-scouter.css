@@ -94,7 +94,7 @@ body.page-signal-scouter {
 }
 
 .absolute-nav.hidden-nav {
-  opacity: 0.2;
+  opacity: 0.98;
 }
 .absolute-nav.hidden-nav:hover {
   opacity: 1;
@@ -173,9 +173,12 @@ body.page-signal-scouter {
   cursor: pointer;
   transition:
     transform 0.2s,
-    background 0.2s;
+    background 0.2s,
+    box-shadow 0.2s;
   width: auto;
   align-self: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transform: translateY(0) scale(1);
 }
 
 .sst-start-btn.hidden {
@@ -187,8 +190,14 @@ body.page-signal-scouter {
   cursor: not-allowed;
 }
 
+.sst-start-btn:hover:not(:disabled) {
+  background: var(--scouter-btn-bg-hover, var(--scouter-btn-bg));
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  transform: translateY(-1px) scale(1.03);
+}
+
 .sst-start-btn:active {
-  transform: scale(0.98);
+  transform: translateY(0) scale(0.97);
 }
 
 .sst-bottom-bar .interaction-hint {
