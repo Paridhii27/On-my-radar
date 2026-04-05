@@ -1,6 +1,5 @@
 :root {
   /* Thought Clouds: shared tokens */
-  --tc-text-muted: rgba(0, 0, 0, 0.45);
   --tc-hint-text: #ffffff;
 
   --tc-toggle-bg: rgba(255, 255, 255, 0.88);
@@ -42,7 +41,6 @@
 
 body.page-thought-clouds {
   font-family: var(--font-body, "Synonym-Regular", sans-serif);
-  --text-color: var(--tc-text-muted);
 
   background: linear-gradient(
     -45deg,
