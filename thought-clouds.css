@@ -43,7 +43,7 @@
 body.page-thought-clouds {
   font-family: var(--font-body, "Synonym-Regular", sans-serif);
   --text-color: var(--tc-text-muted);
-  /* Deeper cobalt → brighter sky → teal edge for readable motion */
+
   background: linear-gradient(
     -45deg,
     #0f3a72,
@@ -71,7 +71,6 @@ body.page-thought-clouds {
 }
 
 body.page-thought-clouds.time-dawn {
-  /* Warm coral / rose vs cool blue — stronger split than flat peach */
   background: linear-gradient(
     -45deg,
     #e8946b,
@@ -96,7 +95,6 @@ body.page-thought-clouds.time-day {
 }
 
 body.page-thought-clouds.time-dusk {
-  /* Plum / mauve vs ember vs deep violet — sunset bands read when gradient shifts */
   background: linear-gradient(
     -45deg,
     #52396b,
@@ -109,7 +107,6 @@ body.page-thought-clouds.time-dusk {
 }
 
 body.page-thought-clouds.time-night {
-  /* Near-black vs navy vs indigo — moonlit pockets so float animation is visible */
   background: linear-gradient(
     -45deg,
     #5a5d95,
