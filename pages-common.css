@@ -21,7 +21,7 @@
   --tc-bar-bg: rgba(255, 255, 255, 0.5);
   --tc-bar-border: rgba(0, 0, 0, 0.1);
   --tc-bar-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-  --tc-hint-text-muted: rgba(0, 0, 0, 0.45);
+  --tc-hint-text: #ffffff;
 
   --field-hud-bg: #ffffffb3;
   --field-hud-border: rgba(0, 0, 0, 0.05);
@@ -113,7 +113,7 @@
   font-family: var(--font-body, sans-serif);
   font-size: clamp(11px, 3.1vw, 14px);
   line-height: 1.45;
-  color: var(--tc-hint-text-muted);
+  color: var(--tc-hint-text);
   text-align: center;
   max-width: min(26rem, calc(100vw - 32px));
   padding: 0 12px;
