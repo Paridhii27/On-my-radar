@@ -113,7 +113,6 @@
   font-family: var(--font-body, sans-serif);
   font-size: clamp(11px, 3.1vw, 14px);
   line-height: 1.45;
-  color: var(--tc-hint-text);
   text-align: center;
   max-width: min(26rem, calc(100vw - 32px));
   padding: 0 12px;
